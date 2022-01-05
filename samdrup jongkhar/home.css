@@ -1,0 +1,679 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@700&display=swap");
+body{background-color:black;}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.fixbar{
+  display:block;
+  position:absolute;
+}
+
+/* navbar */
+#menu {
+	background: #2D3569;
+	color: #FFF;
+	height: 55px;
+	padding-left: 18px;
+	border-radius: 0px;
+	border: 2px solid #A68544;
+}
+#menu ul, #menu li {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none
+}
+#menu ul {
+	width: 100%;
+}
+#menu li {
+	float: left;
+	display: inline;
+	position: relative;
+}
+#menu a {
+	display: block;
+	line-height: 51px;
+	padding: 0 14px;
+	text-decoration: none;
+	color: #FFFEF7;
+	font-size: 15px;
+	text-transform: uppercase;
+}
+#menu a.dropdown-arrow:after {
+	content: "\25BF";
+	margin-left: 5px;
+}
+#menu li a:hover {
+	color: #F5DD40;
+	background: #F26B3A;
+}
+#menu input {
+	display: none;
+	margin: 0;
+	padding: 0;
+	height: 55px;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer
+}
+#menu label {
+	display: none;
+	line-height: 51px;
+	text-align: center;
+	position: absolute;
+	left: 35px
+}
+#menu label:before {
+	font-size: 1.6em;
+	content: "\2261"; 
+	margin-left: 20px;
+}
+#menu ul.sub-menus{
+	height: auto;
+	overflow: hidden;
+	width: 170px;
+	background: #4C9137;
+	position: absolute;
+	z-index: 99;
+	display: none;
+}
+#menu ul.sub-menus li {
+	display: block;
+	width: 100%;
+}
+#menu ul.sub-menus a {
+	color: #D6AD3A;
+	font-size: 12px;
+}
+#menu li:hover ul.sub-menus {
+	display: block
+}
+#menu ul.sub-menus a:hover{
+	background: #F26D1F;
+	color: #443F14;
+}
+@media screen and (max-width: 800px){
+	#menu {position:relative}
+	#menu ul {background:#111;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none}
+	#menu ul.sub-menus {width:100%;position:static;}
+	#menu ul.sub-menus a {padding-left:30px;}
+	#menu li {display:block;float:none;width:auto;}
+	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
+	#menu input {z-index:4}
+	#menu input:checked + label {color:white}
+	#menu input:checked + label:before {content:"\00d7"}
+	#menu input:checked ~ ul {display:block}
+}
+
+:root {
+  font-size: 62.5%;
+  --white: #fff;
+  --sand-color: #a59678;
+  --deep-blue: #ddd900;
+  --king-blue: #3b4050;
+  --gray: rgb(235, 235, 235);
+  --light-black: rgb(0 0 0 / 0.8);
+  --extra-light-black: rgb(0 0 0 / 0.4);
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+}
+
+/* Bottom right text */
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgb(162, 164, 196);
+  color:blanchedalmond;
+  padding-top:400px;
+  height:100px
+}
+
+.primary-nav__link,
+.secondary-nav__link,
+.hero__title,
+.hero__link,
+.subtitle {
+  font-family: "Oswald", sans-serif;
+  padding-right: 30px;
+}
+
+.subtitle {
+  color:black;
+}
+
+.subtitle::first-letter,
+.hero__title::first-letter,
+.footer__nav__link::first-letter {
+  text-transform: uppercase;
+}
+
+.link-button {
+  padding: 0.25em 1.25em;
+
+  background: var(--sand-color);
+  color: var(--white);
+  border-radius: 100px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2em 0;
+  margin: 0 auto;
+}
+/*Header*/
+.header {
+  background: var(--deep-blue);
+}
+
+.header > .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  width: 100%;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.toggle {
+  position: absolute;
+  left: 10vw;
+
+  width: 40px;
+  height: 40px;
+  border: none;
+
+  font-size: 20px;
+
+  border-radius: 50%;
+  background: var(--extra-light-black);
+  color: var(--gray);
+}
+
+.toggle:hover,
+.toggle:active,
+a:hover,
+a:active {
+  opacity: 0.7;
+}
+/*It is not displayed unless the user clicks on the toggle button*/
+.nav-container {
+  display: none;
+}
+/*This class will be added to nav-container to ve visible*/
+.nav-container--visible {
+  display: block;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  border-top: 1px solid var(--king-blue);
+  padding: 2em 0;
+
+  background: var(--deep-blue);
+}
+
+.primary-nav__link,
+.secondary-nav__link,
+.hero__link {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  text-decoration: none;
+  text-transform: uppercase;
+
+  color: var(--white);
+}
+
+.primary-nav__link,
+.secondary-nav__link {
+  font-size: clamp(1.5rem, 2vw, 1.8rem);
+}
+
+.primary-nav {
+  margin-bottom: 2.5rem;
+}
+
+.nav__list {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.nav__list__item {
+  margin-bottom: 1rem;
+
+  text-align: center;
+}
+/*Main*/
+.hero-section {
+  width: 100%;
+  background-image: url('./images/r2.jpg');
+}
+
+.hero__title {
+  font-size: clamp(5rem, 10vw, 9rem);
+  line-height: 1.1;
+}
+
+.accent {
+  color: var(--sand-color);
+}
+
+.hero__text {
+  margin: 1.75em 0;
+
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.hero__aside {
+  background-image: url(r2.jpg);
+}
+
+.hero__aside__section > .subtitle {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.hero__aside__text {
+  margin: 1.5rem 0;
+
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  text-align: center;
+
+  color: var(--light-black);
+}
+
+.primary-section .subtitle {
+  margin-bottom: 1.5rem;
+
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+}
+
+.primary-section .wrap {
+  margin-bottom: 50px;
+}
+
+.primary-section__img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+}
+
+.primary-section__text {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+
+}
+.style{
+font-size:xx-large
+}
+
+.primary__aside {
+  padding: 2em 0;
+
+  text-align: center;
+}
+
+.primary__aside__article {
+  padding: 2em;
+  margin-top: 30px;
+
+  background:gold;
+  color: var(--white);
+  border-radius: 30px;
+}
+
+.primary__aside__article > .subtitle {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  color: white;
+}
+
+.aside__article__text {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+/*Footer*/
+.footer {
+  background: var(--king-blue);
+}
+
+.footer__text-big {
+  width: 80%;
+  padding: 1.5rem 0;
+  margin: 0 auto;
+
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  text-align: center;
+
+  color: var(--white);
+}
+
+.footer__text-big::first-letter {
+  text-transform: uppercase;
+}
+
+.footer__section {
+  padding: 2em 0;
+}
+
+.footer .subtitle {
+  padding-bottom: 1em;
+
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+}
+
+.footer__section__text,
+.footer__nav__link {
+  font-size: clamp(1.4rem, 3vw, 1.6rem);
+
+  color: var(--white);
+}
+
+.footer__nav {
+  padding: 2.5em 0;
+}
+
+.footer__nav__link {
+  padding: 0.5em 0;
+
+  text-decoration: none;
+}
+
+.footer__nav__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (min-width: 700px) {
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header > .container {
+    justify-content: space-between;
+  }
+
+  .nav__list {
+    display: flex;
+  }
+
+  .nav__list__item {
+    margin: 0 0 0 15px;
+  }
+
+  .primary-nav {
+    margin: 0 auto 0;
+  }
+
+  .primary__aside__article,
+  .hero__aside__section {
+    width: 31.5%;
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  .nav-container {
+    display: flex;
+
+    position: static;
+
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+}
+
+@media (min-width: 1000px) {
+  .row2 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .hero-section .row2 > * {
+    width: 45%;
+  }
+
+  .hero-section .row2 {
+    padding: 125px 0 150px;
+  }
+
+  .wrap--bottom {
+    align-self: flex-end;
+  }
+
+  .primary-section .wrap {
+    width: 55%;
+  }
+
+  .primary-section .row {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 35%;
+  }
+
+  .primary__aside__article {
+    width: 100%;
+  }
+  
+  .primary__aside__article:first-child {
+    margin-top: 0;
+  }
+
+  .footer__section {
+    width: 40%;
+  }
+
+  .footer .row {
+    width: 50%;
+  }
+}
+
+/*form*/
+body {font-family: Arial, Helvetica, sans-serif;
+background-color:orange}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 5px solid rgba(204, 204, 204, 0.123);
+  box-sizing: border-box;
+  color:#000
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #176c81e7;
+  color:black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 3px; 
+  cursor: pointer;
+  width: 85%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 85%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-image: url(./images/form2.jpg);
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+/*register form*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container1 {
+  padding: 16px;
+  background-image: url(./images/r2.jpg);
+  width: 50%;
+  align-content: center;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border-radius: 3px;
+  background: #f1f1f1;
+  
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
